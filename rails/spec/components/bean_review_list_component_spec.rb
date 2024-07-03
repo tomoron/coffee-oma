@@ -3,13 +3,18 @@
 require 'rails_helper'
 
 RSpec.describe BeanReviewList, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:bean_review) { create(:bean_review, user: user) }
+  let(:bean_review_like) { create(:bean_review_like, liked_id: bean_review.id, user: user) }
+  let(:user) { create(:user) }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  before do
+    bean_review_like
+  end
+
+  it 'renders a bean review list' do
+    reviews = BeanReview.where(user: user).page(1).per(5)
+    review_likes = BeanReviewLike.where(user: user).page(1).per(5)
+    render_inline(BeanReviewList::Component.new(bean_reviews: reviews, bean_review_likes: review_likes, current_user: user))
+    expect(page).to have_css('#bean_review_list')
+  end
 end

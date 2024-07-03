@@ -6,7 +6,6 @@ class Component::BeanReviewsController < Component::ApplicationController
       @review_likes = current_user.where_review_likes(@bean_reviews, 'bean_review')
     end
 
-    @bean_reviews = BeanReviewDecorator.decorate_collection(@bean_reviews)
     render turbo_stream: turbo_stream_component_replace('bean_review_list', bean_reviews: @bean_reviews, bean_review_likes: @review_likes,
                                                                             current_user: current_user)
   end

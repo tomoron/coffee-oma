@@ -5,6 +5,7 @@ export default class extends Controller {
   connect() {
     $("#login_button").popup({
       on: "hover",
+      hoverable: true,
       popup: ".ui.popup.login_popup",
     });
 

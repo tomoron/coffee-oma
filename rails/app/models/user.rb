@@ -31,6 +31,7 @@
 #
 class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
+  include OverwriteDevise
 
   has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follow

@@ -3,13 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe HomeReviews, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:review) { create(:review) }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  before do
+    review
+  end
+
+  it 'renders a list of reviews' do
+    reviews = Review.latest_review
+    render_inline(HomeReviews::Component.new(reviews: reviews))
+    expect(page).to have_content(review.title)
+  end
 end

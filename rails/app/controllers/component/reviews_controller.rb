@@ -1,6 +1,6 @@
 class Component::ReviewsController < Component::ApplicationController
   def home
-    @reviews = ReviewDecorator.decorate_collection(Review.latest_review)
+    @reviews = Review.latest_review
 
     render turbo_stream: turbo_stream_component_replace('home_reviews', reviews: @reviews)
   end
@@ -12,7 +12,6 @@ class Component::ReviewsController < Component::ApplicationController
       @review_likes = current_user.where_review_likes(@reviews, 'review')
     end
 
-    @reviews = ReviewDecorator.decorate_collection(@reviews)
     render turbo_stream: turbo_stream_component_replace('review_list', reviews: @reviews, review_likes: @review_likes, current_user: current_user)
   end
 

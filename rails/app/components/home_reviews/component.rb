@@ -2,7 +2,7 @@
 
 class HomeReviews::Component < ViewComponent::Base
   def initialize(reviews:)
-    @reviews = reviews
+    @reviews = ReviewDecorator.decorate_collection(reviews)
     super
   end
 end

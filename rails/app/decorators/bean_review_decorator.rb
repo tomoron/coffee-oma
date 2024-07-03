@@ -16,4 +16,8 @@ class BeanReviewDecorator < ApplicationDecorator
   def base_class
     'BeanReview'
   end
+
+  def user_icon
+    user.icon.url
+  end
 end

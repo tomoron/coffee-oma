@@ -3,13 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe NotificationBell, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'renders the bell icon(check: false)' do
+    render_inline(NotificationBell::Component.new(checked: false))
+    expect(page).to have_css('i.bell.outline.icon')
+  end
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  it 'renders the bell icon(check: true)' do
+    render_inline(NotificationBell::Component.new(checked: true))
+    expect(page).to have_css('.new_notification')
+  end
 end

@@ -3,13 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe ReviewsUserShow, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:review) { create(:review) }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  it 'renders a list of reviews' do
+    reviews = Review.user_review(review.user)
+    render_inline(ReviewsUserShow::Component.new(reviews: reviews))
+    expect(page).to have_text(review.product.name)
+  end
+
+  it 'when not review renders a list of reviews' do
+    render_inline(ReviewsUserShow::Component.new(reviews: []))
+    expect(page).to have_text('まだ投稿はありません')
+  end
 end

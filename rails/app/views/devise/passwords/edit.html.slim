@@ -3,7 +3,7 @@
   .ui.middle.aligned.center.aligned.grid data-controller='validate'
     .column style= "width: 543px"
       h1#title パスワードを変更する
-      = form_with model: @user, url: user_password_path ,id: 'new_user',class: "new_user ui password_edit form text-left",local: true, data: {turbo: false, turbo_method: :put} do |f|
+      = form_with model: resource, url: user_password_path ,class: "ui password_edit form text-left", html: { method: :put } do |f|
         = f.hidden_field :reset_password_token
         .required.field
           = f.label :password
@@ -16,13 +16,13 @@
           br
           .ui.left.icon.input
             i.lock.icon
-            = f.password_field :password, autofocus: true, autocomplete: "new-password", id: 'password'
+            = f.password_field :password, autofocus: true, autocomplete: "new-password", id: 'password', placeholder: 'Password'
         .required.field
           = f.label :password_confirmation
           br
           .ui.left.icon.input
             i.lock.icon
-            = f.password_field :password_confirmation, autocomplete: "new-password", id: 'password_confirmation'
+            = f.password_field :password_confirmation, autocomplete: "new-password", id: 'password_confirmation', placeholder: 'Password Confirmation'
         .field
           =f.button type: "submit",class: "ui teal fluid animated fade button" do
             .visible.content.show-when-enabled
@@ -34,5 +34,6 @@
         .ui.error.message
         = render 'devise/shared/error_messages', model:f.object
       .ui.message.text-left
-        .container= render "devise/shared/links"
+        .container
+          = render "devise/shared/links"
 

@@ -3,13 +3,19 @@
 require 'rails_helper'
 
 RSpec.describe LikeButton, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) { create(:user) }
+  let(:product) { create(:product) }
+  let(:like) { create(:product_like, liked_id: product.id, user: user) }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  it 'renders a like button(unlike)' do
+    render_inline(LikeButton::Component.new(like: nil, liked: product.decorate, signed_in: true))
+
+    expect(page).to have_css('.large.heart.icon')
+  end
+
+  it 'renders a like button(like)' do
+    render_inline(LikeButton::Component.new(like: like, liked: product.decorate, signed_in: true))
+
+    expect(page).to have_css('.red.large.heart.icon')
+  end
 end

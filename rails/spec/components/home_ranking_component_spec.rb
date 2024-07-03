@@ -3,13 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe HomeRanking, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:product) { create(:product, brand: brand) }
+  let(:brand) { create(:brand) }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  it 'renders a list of rankings' do
+    render_inline(HomeRanking::Component.new(rankings: [product]))
+
+    expect(page).to have_text(product.name)
+  end
 end

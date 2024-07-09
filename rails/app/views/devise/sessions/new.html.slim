@@ -10,12 +10,15 @@
           .ui.left.icon.input
             i.mail.icon
             = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "E-mail address", id: 'email'
-        .required.field
+        .required.field data-controller='password-visibility' data-password-visibility-hidden-class='password-eye-close'
           = f.label :password
           br
-          .ui.left.icon.input
+          .ui.left.icon.action.input
             i.lock.icon
-            = f.password_field :password, autocomplete: "current-password",placeholder: "Password", id: 'login_password'
+            = f.password_field :password, autocomplete: "current-password",placeholder: "Password", id: 'login_password', data: { password_visibility_target: 'input' }
+            button.ui.icon.button type='button' data-action='password-visibility#toggle'
+              i.eye.icon.password-eye data-password-visibility-target='icon'
+              i.eye.slash.icon.password-eye-close data-password-visibility-target='icon'
         - if devise_mapping.rememberable?
         .field.ui.checkbox
           = f.check_box :remember_me

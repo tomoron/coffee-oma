@@ -14,15 +14,21 @@
                 = @minimum_password_length
                 | 文字以上にしてください
           br
-          .ui.left.icon.input
+          .ui.left.icon.action.input data-controller='password-visibility' data-password-visibility-hidden-class='password-eye-close'
             i.lock.icon
-            = f.password_field :password, autofocus: true, autocomplete: "new-password", id: 'password', placeholder: 'Password'
-        .required.field
+            = f.password_field :password, autofocus: true, autocomplete: "new-password", id: 'password', placeholder: 'Password', data: { password_visibility_target: 'input' }
+            button.ui.icon.button type='button' data-action='password-visibility#toggle'
+              i.eye.icon.password-eye data-password-visibility-target='icon'
+              i.eye.slash.icon.password-eye-close data-password-visibility-target='icon'
+        .required.field data-controller='password-visibility' data-password-visibility-hidden-class='password-eye-close'
           = f.label :password_confirmation
           br
-          .ui.left.icon.input
+          .ui.left.icon.action.input
             i.lock.icon
-            = f.password_field :password_confirmation, autocomplete: "new-password", id: 'password_confirmation', placeholder: 'Password Confirmation'
+            = f.password_field :password_confirmation, autocomplete: "new-password", id: 'password_confirmation', placeholder: 'Password Confirmation', data: { password_visibility_target: 'input' }
+            button.ui.icon.button type='button' data-action='password-visibility#toggle'
+              i.eye.icon.password-eye data-password-visibility-target='icon'
+              i.eye.slash.icon.password-eye-close data-password-visibility-target='icon'
         .field
           =f.button type: "submit",class: "ui teal fluid animated fade button" do
             .visible.content.show-when-enabled

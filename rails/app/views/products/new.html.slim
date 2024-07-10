@@ -46,7 +46,7 @@
             tbody
               tr
                 td
-                  = f.text_area :caption, autofocus: true , placeholder: "item-caption",id: 'description'
+                  = f.text_area :caption, autofocus: true , placeholder: "item-caption",id: 'description', data: { controller: "textarea-autogrow"  }
           .ui.error.message
           =f.button type: "submit",class: "ui teal animated fade button" do
             .visible.content.show-when-enabled

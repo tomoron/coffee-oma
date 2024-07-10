@@ -9,7 +9,7 @@
       = render(Message::Component.with_collection(@messages, current_user: current_user))
     = form_with model: @message, url: messages_path(room_id: @room.id), class: "ui form center aligned ten wide column mb-20" , data: {turbo_method: :post} do |f|
       .field
-        = f.text_area :message, placeholder: "メッセージの内容"
+        = f.text_area :message, placeholder: "メッセージの内容", data: { controller: "textarea-autogrow"  }
       .field
         =f.button type: "submit",class: "large ui teal animated fade button" do
           .visible.content.show-when-enabled

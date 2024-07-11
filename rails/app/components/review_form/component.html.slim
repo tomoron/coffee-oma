@@ -14,7 +14,7 @@
       .fields
         =f.label :content, "レビュー内容", class: "four wide required field"
         .ten.wide.field
-          =f.text_area :content, placeholder: "レビューの内容",id: "content"
+          =f.text_area :content, placeholder: "レビューの内容",id: "content", data: { controller: "textarea-autogrow"  }
       .ui.error.message
       .field
         =f.button nil,type: 'submit',class: "large ui center floated positive animated fade button" do

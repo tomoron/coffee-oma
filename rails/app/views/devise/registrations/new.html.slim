@@ -16,7 +16,7 @@
           .ui.left.icon.input
             i.mail.icon
             = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "E-mail address",id: 'email'
-        .required.field
+        .required.field data-controller='password-visibility' data-password-visibility-hidden-class='password-eye-close'
           = f.label :password
           - if @minimum_password_length
             .ui.pointing.below.label
@@ -25,15 +25,21 @@
                 = @minimum_password_length
                 | 文字以上にしてください
           br
-          .ui.left.icon.input
+          .ui.left.icon.action.input
             i.lock.icon
-            = f.password_field :password, autocomplete: "new-password",placeholder: "Password", id:'password'
-        .required.field
+            = f.password_field :password, autocomplete: "new-password",placeholder: "Password", id:'password', data: { password_visibility_target: 'input' }
+            button.ui.icon.button type='button' data-action='password-visibility#toggle'
+              i.eye.icon.password-eye data-password-visibility-target='icon'
+              i.eye.slash.icon.password-eye-close data-password-visibility-target='icon'
+        .required.field data-controller='password-visibility' data-password-visibility-hidden-class='password-eye-close'
           = f.label :password_confirmation
           br
-          .ui.left.icon.input
+          .ui.left.icon.action.input
             i.lock.icon
-            = f.password_field :password_confirmation, autocomplete: "new-password",placeholder: "Confirmation password", id: 'password_confirmation'
+            = f.password_field :password_confirmation, autocomplete: "new-password",placeholder: "Confirmation password", id: 'password_confirmation', data: { password_visibility_target: 'input' }
+            button.ui.icon.button type='button' data-action='password-visibility#toggle'
+              i.eye.icon.password-eye data-password-visibility-target='icon'
+              i.eye.slash.icon.password-eye-close data-password-visibility-target='icon'
         .inline.field
           .ui.checkbox.mb-1rem
             = label_tag :policy

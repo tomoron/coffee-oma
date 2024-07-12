@@ -18,7 +18,7 @@
             = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "メールアドレス", id: 'email'
         .field
           =f.label :content
-          =f.text_area :content, autofocus: true, placeholder: "\uF044 問合せ内容", class: "editicon", id: 'content'
+          =f.text_area :content, autofocus: true, placeholder: "\uF044 問合せ内容", class: "editicon", id: 'content', data: { controller: "textarea-autogrow"  }
         .field
           =f.button type: "submit",class: "ui teal fluid animated fade button" do
             .visible.content.show-when-enabled

@@ -36,7 +36,7 @@
         .field
           = f.label :profile
           br
-          = f.text_area :profile, autofocus: true, placeholder: "\uF044 profile", id: "spec-profile", class: "editicon"
+          = f.text_area :profile, autofocus: true, placeholder: "\uF044 profile", id: "spec-profile", class: "editicon", data: { controller: "textarea-autogrow"  }
         .ui.styled.accordion.field
           .title.password-accordion#accordion
             i.dropdown.icon
@@ -52,14 +52,20 @@
                   | パスワードは
                   = @minimum_password_length
                   | 文字以上にしてください
-            .ui.left.icon.input
+            .ui.left.icon.action.input data-controller='password-visibility' data-password-visibility-hidden-class='password-eye-close'
               i.lock.icon
-              = f.password_field :password, autocomplete: "new-password", placehoder: "new-password", id: "spec-password"
+              = f.password_field :password, autocomplete: "new-password", placehoder: "new-password", id: "spec-password", data: { password_visibility_target: 'input' }
+              button.ui.icon.button type='button' data-action='password-visibility#toggle'
+                i.eye.icon.password-eye data-password-visibility-target='icon'
+                i.eye.slash.icon.password-eye-close data-password-visibility-target='icon'
             = f.label :password_confirmation
             br
-            .ui.left.icon.input
+            .ui.left.icon.action.input data-controller='password-visibility' data-password-visibility-hidden-class='password-eye-close'
               i.lock.icon
-              = f.password_field :password_confirmation, autocomplete: "new-password", plachoder: "confrimation-new-password", id: "spec-password-confirmation"
+              = f.password_field :password_confirmation, autocomplete: "new-password", plachoder: "confrimation-new-password", id: "spec-password-confirmation", data: { password_visibility_target: 'input' }
+              button.ui.icon.button type='button' data-action='password-visibility#toggle'
+                i.eye.icon.password-eye data-password-visibility-target='icon'
+                i.eye.slash.icon.password-eye-close data-password-visibility-target='icon'
         .field
           .ui.error.message
           =f.button type: "submit",class: "ui teal fluid animated fade button" do

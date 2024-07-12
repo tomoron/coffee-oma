@@ -33,7 +33,7 @@
       .fields
         = f.label :content, class: "four wide required field"
         .ten.wide.field
-          = f.text_area :content, placeholder: "content", id: 'content'
+          = f.text_area :content, placeholder: "content", id: 'content', data: { controller: "textarea-autogrow"  }
       .fields
         .ui.styled.accordion.centered.recipe_accordion
           .title#accordion

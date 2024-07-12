@@ -8,9 +8,9 @@
       .row
         .six.wide.left.floated.column
           .swiper.image-swiper
-            .swiper-wrapper
+            .swiper-wrapper data-controller='lightbox' data-lightbox-options-value="{"download": false}"
               - @product.images.each do |image|
-                .swiper-slide
+                .swiper-slide data-src=image.url
                   =image_tag image.url ,class: "ui large bordered rounded image"
             .swiper-pagination
             .swiper-button-prev

@@ -2,6 +2,7 @@
 @import "@/stylesheets/home.scss";
 @import "@/stylesheets/actiontext.scss";
 @import "@/stylesheets/rooms.scss";
+@import 'lightgallery/scss/lightgallery';
 
 .back-main-color {
   background-color: #00B5AD !important
@@ -429,6 +430,14 @@ button[disabled] .show-when-enabled {
 
 .block {
   display: block;
+}
+
+.password-eye {
+
+}
+
+.password-eye-close {
+  display: none !important;
 }
 
 @media only screen and (max-width: 768px){
